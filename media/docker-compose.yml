@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  plex:
+    image: linuxserver/plex
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+    - ~/plex/config:/config
+    - /RAID:/data/raid
+    environment:
+      VERSION: latest 
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Chicago
+
+  makemkv:
+    image: jlesage/makemkv
+    ports:
+    - 5800:5800
+    volumes:
+    - ~/Downloads:/output:rw
+    devices:
+    - /dev/sr0:/dev/sr0
+    - /dev/sr1:/dev/sr1
+    - /dev/sr2:/dev/sr2
+    - /dev/sg4:/dev/sg4
+    - /dev/sg5:/dev/sg5
+    - /dev/sg7:/dev/sg7
+    environment:
+      USER_ID: 1000
+      GROUP_ID: 1000
+      TZ: America/Chicago
+      KEEP_APP_RUNNING: 1
+      AUTO_DISC_RIPPER: 1
+      AUTO_DISC_RIPPER_EJECT: 1
+      AUTO_DISC_RIPPER_PARALLEL_RIP: 1
+      AUTO_DISC_RIPPER_INTERVAL: 5
+
+  samba:
+    image: dperson/samba
+    restart: unless-stopped
+    ports:
+    - 139:139
+    - 445:445
+    volumes:
+    - /RAID/Input:/mount
+    environment:
+      USERID: 1000
+      GROUPID: 1000
+      TZ: America/Chicago
+    env_file:
+    - .env
+    read_only: true
+    tmpfs:
+    - /tmp
+    stdin_open: true
+    tty: true
+    command: '-s "Mount;/mount;yes;no;no;$USERNAME" -u "$USERNAME;$PASSWORD"'
+
+  tesla_dashcam:
+    image: magicalyak/tesla_dashcam
+    restart: unless-stopped
+    environment:
+      TZ: America/Chicago
+    volumes:
+    - /RAID/Input:/root/Import
+    - /RAID/Output:/root/Videos/Tesla_Dashcam
+    command: '--swap --rear --delete_source --layout DIAMOND --quality HIGH --fps 33 --compression veryslow /root/Import'

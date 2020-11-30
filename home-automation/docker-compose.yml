@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  unifi-controller:
+    image: linuxserver/unifi-controller
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MEM_LIMIT=1024M
+    ports:
+      - 3478:3478/udp
+      - 10001:10001/udp
+      - 8080:8080
+      - 8443:8443
+      - 1900:1900/udp
+      - 8843:8843
+      - 8880:8880
+      - 6789:6789
+      - 5514:5514
+    volumes:
+      - ~/unifi-controller:/config
+        
+  home-assistant:
+    image: homeassistant/home-assistant
+    restart: unless-stopped
+    ports:
+    - 8123:8123
+    volumes:
+    - ~/home-assistant:/config
+    devices:
+    - /dev/ttyACM0:/dev/ttyACM0
+
+  blue-iris:
+    image: leonowski/docker-blueiris:run_as_service
+    restart: unless-stopped
+    # privileged: true
+    init: true
+    environment:
+    # - RESOLUTION=1440x768x24
+    # - RESOLUTION=1918x902x24
+    - TZ=America/Chicago
+    ports:
+    # - 8082:8080
+    - 8081:8081
+    volumes:
+    - /SURVEILLANCE/blue-iris:/home/wineuser/prefix:rw
+    - aiinput:/home/wineuser/prefix/drive_c/BlueIris/aiinput
+    command: -c /etc/supervisor/conf.d/supervisord-service.conf
+
+  trigger:
+    image: danecreekphotography/node-deepstackai-trigger
+    restart: unless-stopped
+    environment:
+    - TZ=America/Chicago
+    secrets:
+    - triggers
+    - settings
+    - secrets
+    # ports:
+    # - 4242:4242
+    volumes:
+    - aiinput:/aiinput
+  
+  deepstack-ai:
+    image: deepquestai/deepstack
+    restart: unless-stopped
+    environment:
+    - VISION-DETECTION=True
+    volumes:
+    - /SURVEILLANCE/deepstack/datastore:/datastore
+
+  mqtt-broker:
+    image: eclipse-mosquitto
+    restart: unless-stopped
+    ports:
+    - 1883:1883
+    volumes:
+    - ./mosquitto/config:/mosquitto/config
+
+secrets:
+  settings:
+    file: ./settings.json
+  triggers:
+    file: ./triggers.json
+  secrets:
+    file: ./secrets.json
+
+volumes:
+  aiinput:
