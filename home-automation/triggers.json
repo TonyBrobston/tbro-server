@@ -50,7 +50,7 @@
       "watchPattern": "/aiinput/garage_e_snap*.jpg",
       "enabled": true,
       "threshold": {
-        "minimum": 85,
+        "minimum": 75,
         "maximum": 100
       },
       "handlers": {
