@@ -31,6 +31,14 @@ services:
     devices:
     - /dev/ttyACM0:/dev/ttyACM0
 
+  mdns-repeater:
+    image: angelnu/mdns_repeater
+    restart: unless-stopped
+    network_mode: host
+    environment:
+    - hostNIC=enp4s0
+    - dockerNIC=br-de87821a94e9
+
   blue-iris:
     image: leonowski/docker-blueiris:run_as_service
     restart: unless-stopped
