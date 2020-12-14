@@ -28,8 +28,6 @@ services:
     - 8123:8123
     volumes:
     - ~/home-assistant:/config
-    devices:
-    - /dev/ttyACM0:/dev/ttyACM0
 
   mdns-repeater:
     image: angelnu/mdns_repeater
