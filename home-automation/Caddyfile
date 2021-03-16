@@ -16,3 +16,16 @@
         }
     }
 }
+{$AUTOMATION_DOMAIN}:443 {
+    tls {
+        dns lego_deprecated duckdns
+    }
+    reverse_proxy home-assistant:8123
+}
+
+{$SURVEILLANCE_DOMAIN}:443 {
+    tls {
+        dns lego_deprecated duckdns
+    }
+    reverse_proxy blue-iris:8081
+}

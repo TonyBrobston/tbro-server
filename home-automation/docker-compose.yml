@@ -25,7 +25,6 @@ services:
     - 8080:8080
     - 8443:8443
     - 1900:1900/udp
-    - 8843:8843
     - 8880:8880
     - 6789:6789
     - 5514:5514
@@ -44,8 +43,6 @@ services:
   home-assistant:
     image: homeassistant/home-assistant
     restart: unless-stopped
-    ports:
-    - 8123:8123
     volumes:
     - ~/home-assistant:/config
 
@@ -65,11 +62,10 @@ services:
     environment:
     #- RESOLUTION=1270x650x24
     #- RESOLUTION=1440x768x24
-    # - RESOLUTION=1918x902x24
+    #- RESOLUTION=1918x902x24
     - TZ=America/Chicago
-    ports:
+    #ports:
     #- 8082:8080
-    - 8081:8081
     volumes:
     - /SURVEILLANCE/blue-iris:/home/wineuser/prefix:rw
     - aiinput:/home/wineuser/prefix/drive_c/BlueIris/aiinput
