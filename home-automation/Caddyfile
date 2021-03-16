@@ -1,0 +1,18 @@
+{$VAULT_DOMAIN}:443 {
+    tls {
+        dns lego_deprecated duckdns
+    }
+    reverse_proxy bitwarden:8080
+    reverse_proxy /notifications/hub bitwarden:3012
+}
+{$NETWORK_DOMAIN}:443 {
+    tls {
+        dns lego_deprecated duckdns
+    }
+    reverse_proxy unifi-controller:8443 {
+        transport http {
+            tls
+            tls_insecure_skip_verify
+        }
+    }
+}

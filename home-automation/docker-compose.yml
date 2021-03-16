@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+  caddy:
+    image: rajaseg/caddy
+    restart: unless-stopped
+    ports:
+    - 80:80
+    - 443:443
+    volumes:
+    - ./Caddyfile:/etc/caddy/Caddyfile
+    env_file:
+    - caddy.env
+
   unifi-controller:
     image: linuxserver/unifi-controller
     restart: unless-stopped
@@ -20,6 +31,15 @@ services:
     - 5514:5514
     volumes:
     - ~/unifi-controller:/config
+
+  bitwarden:
+    image: bitwardenrs/server
+    restart: unless-stopped
+    environment:
+    - WEBSOCKET_ENABLED=true
+    - ROCKET_PORT=8080
+    volumes:
+    - ~/bitwarden:/data
         
   home-assistant:
     image: homeassistant/home-assistant

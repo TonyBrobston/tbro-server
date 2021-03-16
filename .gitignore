@@ -1,5 +1,5 @@
 options.json
 secrets.json
 passwordfile
-.env
+*.env
 *.swp
