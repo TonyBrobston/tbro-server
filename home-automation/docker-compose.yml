@@ -39,6 +39,22 @@ services:
     - ROCKET_PORT=8080
     volumes:
     - /RAID/bitwarden:/data
+
+  bitwarden-backup:
+    image: bruceforce/bw_backup
+    restart: unless-stopped
+    volumes:
+      - /RAID/bitwarden:/data
+      - ~/bitwarden_backup:/backup
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - DB_FILE=/data/db.sqlite3
+      - BACKUP_FILE=/backup/backup.sqlite3
+      - CRON_TIME=0 1 * * *
+      - TIMESTAMP=false
+      - UID=1000
+      - GID=1000
         
   home-assistant:
     image: homeassistant/home-assistant
