@@ -14,28 +14,28 @@ services:
       PGID: 1000
       TZ: America/Chicago
 
-  makemkv:
-    image: jlesage/makemkv
-    ports:
-    - 5800:5800
-    volumes:
-    - ~/Downloads:/output:rw
-    devices:
-    - /dev/sr0:/dev/sr0
-    - /dev/sr1:/dev/sr1
-    - /dev/sr2:/dev/sr2
-    - /dev/sg4:/dev/sg4
-    - /dev/sg5:/dev/sg5
-    - /dev/sg7:/dev/sg7
-    environment:
-      USER_ID: 1000
-      GROUP_ID: 1000
-      TZ: America/Chicago
-      KEEP_APP_RUNNING: 1
-      AUTO_DISC_RIPPER: 1
-      AUTO_DISC_RIPPER_EJECT: 1
-      AUTO_DISC_RIPPER_PARALLEL_RIP: 1
-      AUTO_DISC_RIPPER_INTERVAL: 5
+      #   makemkv:
+      #     image: jlesage/makemkv
+      #     ports:
+      #     - 5800:5800
+      #     volumes:
+      #     - ~/Downloads:/output:rw
+      #     devices:
+      #     - /dev/sr0:/dev/sr0
+      #     - /dev/sr1:/dev/sr1
+      #     - /dev/sr2:/dev/sr2
+      #     - /dev/sg4:/dev/sg4
+      #     - /dev/sg5:/dev/sg5
+      #     - /dev/sg7:/dev/sg7
+      #     environment:
+      #       USER_ID: 1000
+      #       GROUP_ID: 1000
+      #       TZ: America/Chicago
+      #       KEEP_APP_RUNNING: 1
+      #       AUTO_DISC_RIPPER: 1
+      #       AUTO_DISC_RIPPER_EJECT: 1
+      #       AUTO_DISC_RIPPER_PARALLEL_RIP: 1
+      #       AUTO_DISC_RIPPER_INTERVAL: 5
 
   samba:
     image: dperson/samba
