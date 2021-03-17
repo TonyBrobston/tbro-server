@@ -54,6 +54,33 @@ services:
     - hostNIC=enp4s0
     - dockerNIC=br-de87821a94e9
 
+  plex:
+    image: linuxserver/plex
+    restart: unless-stopped
+    volumes:
+    - ~/plex/config:/config
+    - /RAID:/data/raid
+    environment:
+      VERSION: latest 
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Chicago
+
+  samba:
+    image: dperson/samba
+    restart: unless-stopped
+    ports:
+    - 139:139
+    - 445:445
+    volumes:
+    - /RAID/Input:/mount
+    environment:
+      USERID: 1000
+      GROUPID: 1000
+      TZ: America/Chicago
+    env_file:
+    - samba.env
+
   blue-iris:
     image: leonowski/docker-blueiris:run_as_service
     restart: unless-stopped

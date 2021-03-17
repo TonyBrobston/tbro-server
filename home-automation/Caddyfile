@@ -28,3 +28,9 @@
     }
     reverse_proxy blue-iris:8081
 }
+{$MEDIA_DOMAIN}:443 {
+    tls {
+        dns route53
+    }
+    reverse_proxy plex:32400
+}
