@@ -10,7 +10,7 @@
       },
       "handlers": {
         "webRequest": {
-          "triggerUris": ["https://tbsurveillance.duckdns.org/admin?trigger&camera=house_east&user={{blueIris.username}}&pw={{blueIris.password}}"]
+          "triggerUris": ["https://{{blueIris.domain}}/admin?trigger&camera=house_east&user={{blueIris.username}}&pw={{blueIris.password}}"]
         }
       },
       "watchObjects": ["person", "cat", "dog"]
@@ -25,7 +25,7 @@
       },
       "handlers": {
         "webRequest": {
-          "triggerUris": ["https://tbsurveillance.duckdns.org/admin?trigger&camera=house_northeast&user={{blueIris.username}}&pw={{blueIris.password}}"]
+          "triggerUris": ["https://{{blueIris.domain}}/admin?trigger&camera=house_northeast&user={{blueIris.username}}&pw={{blueIris.password}}"]
         }
       },
       "watchObjects": ["person", "cat", "dog"]
@@ -40,7 +40,7 @@
       },
       "handlers": {
         "webRequest": {
-          "triggerUris": ["https://tbsurveillance.duckdns.org/admin?trigger&camera=house_west&user={{blueIris.username}}&pw={{blueIris.password}}"]
+          "triggerUris": ["https://{{blueIris.domain}}/admin?trigger&camera=house_west&user={{blueIris.username}}&pw={{blueIris.password}}"]
         }
       },
       "watchObjects": ["person", "cat", "dog"]
@@ -55,7 +55,7 @@
       },
       "handlers": {
         "webRequest": {
-          "triggerUris": ["https://tbsurveillance.duckdns.org/admin?trigger&camera=garage_east&user={{blueIris.username}}&pw={{blueIris.password}}"]
+          "triggerUris": ["https://{{blueIris.domain}}/admin?trigger&camera=garage_east&user={{blueIris.username}}&pw={{blueIris.password}}"]
         }
       },
       "watchObjects": ["person", "cat", "dog"]
@@ -70,7 +70,7 @@
       },
       "handlers": {
         "webRequest": {
-          "triggerUris": ["https://tbsurveillance.duckdns.org/admin?trigger&camera=garage_north&user={{blueIris.username}}&pw={{blueIris.password}}"]
+          "triggerUris": ["https://{{blueIris.domain}}/admin?trigger&camera=garage_north&user={{blueIris.username}}&pw={{blueIris.password}}"]
         }
       },
       "watchObjects": ["person", "cat", "dog"]
