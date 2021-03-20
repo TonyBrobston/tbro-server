@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   caddy:
-    image: ghcr.io/williamjacksn/caddy-route53
+    build: .
     restart: unless-stopped
     ports:
     - 80:80
@@ -73,6 +73,8 @@ services:
   plex:
     image: linuxserver/plex
     restart: unless-stopped
+    ports:
+    - 32400:32400
     volumes:
     - ~/plex/config:/config
     - /RAID:/data/raid
