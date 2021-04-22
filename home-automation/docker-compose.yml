@@ -97,7 +97,23 @@ services:
       GROUPID: 1000
       TZ: America/Chicago
     env_file:
-    - samba.env
+    - .env
+    read_only: true
+    tmpfs:
+    - /tmp
+    stdin_open: true
+    tty: true
+    command: '-s "Mount;/mount;yes;no;no;$USERNAME" -u "$USERNAME;$PASSWORD"'
+
+  tesla_dashcam:
+    image: magicalyak/tesla_dashcam
+    restart: unless-stopped
+    environment:
+    - TZ=America/Chicago
+    volumes:
+    - /RAID/Input:/root/Import
+    - /RAID/Output:/root/Videos/Tesla_Dashcam
+    command: '--swap --rear --delete_source --layout DIAMOND --quality HIGH --fps 33 --compression veryslow /root/Import'
 
   blue-iris:
     image: leonowski/docker-blueiris:run_as_service
@@ -114,6 +130,10 @@ services:
     volumes:
     - /SURVEILLANCE/blue-iris:/home/wineuser/prefix:rw
     - aiinput:/home/wineuser/prefix/drive_c/BlueIris/aiinput
+    logging:
+      options:
+        max-size: 5m
+        max-file: "2"
     command: -c /etc/supervisor/conf.d/supervisord-service.conf
 
   trigger:
