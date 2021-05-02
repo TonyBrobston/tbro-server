@@ -128,27 +128,27 @@ services:
     #ports:
     #- 8082:8080
     volumes:
-    - /SURVEILLANCE/blue-iris:/home/wineuser/prefix:rw
-    - aiinput:/home/wineuser/prefix/drive_c/BlueIris/aiinput
+    - ~/blue-iris:/home/wineuser/prefix:rw
+    - /RAID/Surveillance:/home/wineuser/prefix/drive_c/BlueIris/Stored
     logging:
       options:
         max-size: 5m
         max-file: "2"
     command: -c /etc/supervisor/conf.d/supervisord-service.conf
 
-  trigger:
-    image: danecreekphotography/node-deepstackai-trigger
-    restart: unless-stopped
-    environment:
-    - TZ=America/Chicago
-    secrets:
-    - triggers
-    - settings
-    - secrets
-    # ports:
-    # - 4242:4242
-    volumes:
-    - aiinput:/aiinput
+#  trigger:
+#    image: danecreekphotography/node-deepstackai-trigger
+#    restart: unless-stopped
+#    environment:
+#    - TZ=America/Chicago
+#    secrets:
+#    - triggers
+#    - settings
+#    - secrets
+#    # ports:
+#    # - 4242:4242
+#    volumes:
+#    - aiinput:/aiinput
   
   deepstack-ai:
     image: deepquestai/deepstack
