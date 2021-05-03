@@ -130,8 +130,8 @@ services:
     #ports:
     #- 8082:8080
     volumes:
-    - ~/blue-iris:/home/wineuser/prefix:rw
-    - /RAID/Surveillance:/home/wineuser/prefix/drive_c/BlueIris/Stored
+    - ~/blue-iris/fast-storage:/home/wineuser/prefix/drive_c/BlueIris/New
+    - /RAID/blue-iris:/home/wineuser/prefix:rw
     logging:
       options:
         max-size: 5m
