@@ -58,7 +58,6 @@ services:
         
   home-assistant:
     image: homeassistant/home-assistant
-    #image: homeassistant/home-assistant:2021.5.0b0
     restart: unless-stopped
     volumes:
     - ~/home-assistant:/config
