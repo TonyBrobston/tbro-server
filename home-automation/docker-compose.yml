@@ -60,7 +60,7 @@ services:
     image: homeassistant/home-assistant
     restart: unless-stopped
     volumes:
-    - ~/home-assistant:/config
+      - ~/home-assistant:/config
 
   mdns-repeater:
     image: angelnu/mdns_repeater
