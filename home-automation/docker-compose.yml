@@ -81,7 +81,7 @@ services:
     - /MOVIES:/data/movies
     - /TV_SHOWS:/data/tv_shows
     environment:
-      VERSION: latest 
+      VERSION: docker
       PUID: 1000
       PGID: 1000
       TZ: America/Chicago
@@ -143,6 +143,7 @@ services:
     restart: unless-stopped
     environment:
     - VISION-DETECTION=True
+    - VISION-FACE=True
     volumes:
     - /RAID/deepstack/datastore:/datastore
 
