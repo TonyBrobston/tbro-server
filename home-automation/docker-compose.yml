@@ -143,9 +143,7 @@ services:
     privileged: true
     shm_size: '1g'
     ports:
-    - 1935:1935
     - 5000:5000
-    - 5001:5001
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - ~/frigate:/config
