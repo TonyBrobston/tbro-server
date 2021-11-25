@@ -130,13 +130,28 @@ services:
     #ports:
     #- 8082:8080
     volumes:
-    - ~/blue-iris/fast-storage:/home/wineuser/prefix/drive_c/BlueIris/New
     - /RAID/blue-iris:/home/wineuser/prefix:rw
     logging:
       options:
         max-size: 5m
         max-file: "2"
     command: -c /etc/supervisor/conf.d/supervisord-service.conf
+
+  frigate:
+    image: blakeblackshear/frigate:stable-amd64
+    restart: unless-stopped
+    privileged: true
+    shm_size: '1g'
+    ports:
+    - 1935:1935
+    - 5000:5000
+    - 5001:5001
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - ~/frigate:/config
+    - /RAID/frigate:/clips
+    env_file:
+    - frigate.env
 
   deepstack-ai:
     image: deepquestai/deepstack
