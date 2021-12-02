@@ -151,6 +151,16 @@ services:
     env_file:
     - frigate.env
 
+  double-take:
+    image: jakowenko/double-take
+    restart: unless-stopped
+    volumes:
+    - ~/double-take:/.storage
+    ports:
+    - 3000:3000
+    env_file:
+    - double-take.env
+
   deepstack-ai:
     image: deepquestai/deepstack
     restart: unless-stopped
