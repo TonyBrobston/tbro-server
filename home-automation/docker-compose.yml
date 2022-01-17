@@ -2,15 +2,15 @@ version: '3.8'
 
 services:
   caddy:
-    build: .
+    build: caddy/.
     restart: unless-stopped
     ports:
     - 80:80
     - 443:443
     volumes:
-    - ./Caddyfile:/etc/caddy/Caddyfile
+    - ./caddy/Caddyfile:/etc/caddy/Caddyfile
     env_file:
-    - caddy.env
+    - caddy/caddy.env
 
   unifi-controller:
     image: linuxserver/unifi-controller
@@ -73,8 +73,6 @@ services:
   plex:
     image: linuxserver/plex
     restart: unless-stopped
-    ports:
-    - 32400:32400
     volumes:
     - ~/plex/config:/config
     - /RAID/Output:/data/tesla_cam
@@ -115,7 +113,7 @@ services:
     volumes:
     - /RAID/Input:/root/Import
     - /RAID/Output:/root/Videos/Tesla_Dashcam
-    command: '--swap --rear --delete_source --layout DIAMOND --quality HIGH --fps 33 --compression veryslow /root/Import'
+    command: '--swap --rear --delete_source --layout DIAMOND --quality HIGH --fps 33 --gpu_type nvidia --compression veryslow /root/Import'
 
   blue-iris:
     image: leonowski/docker-blueiris:run_as_service
@@ -137,34 +135,45 @@ services:
         max-file: "2"
     command: -c /etc/supervisor/conf.d/supervisord-service.conf
 
-  frigate:
-    image: blakeblackshear/frigate:stable-amd64
-    restart: unless-stopped
-    privileged: true
-    shm_size: '1g'
-    ports:
-    - 5000:5000
-    volumes:
-    - /etc/localtime:/etc/localtime:ro
-    - ~/frigate:/config
-    - /RAID/frigate/recordings:/media/frigate/recordings
-    - /RAID/frigate/clips:/media/frigate/clips
-    env_file:
-    - frigate.env
-
-  double-take:
-    image: jakowenko/double-take
-    restart: unless-stopped
-    volumes:
-    - ~/double-take:/.storage
-    ports:
-    - 3000:3000
-    env_file:
-    - double-take.env
+#  frigate:
+#    image: blakeblackshear/frigate:stable-amd64nvidia
+#    restart: unless-stopped
+#    runtime: nvidia
+#    privileged: true
+#    shm_size: '1g'
+#    ports:
+#    - 5000:5000
+#    volumes:
+#    - /etc/localtime:/etc/localtime:ro
+#    - ~/frigate:/config
+#    - /RAID/frigate/recordings:/media/frigate/recordings
+#    - /RAID/frigate/clips:/media/frigate/clips
+#    environment:
+#      - NVIDIA_VISIBLE_DEVICES=all
+#      - NVIDIA_DRIVER_CAPABILITIES=compute,utility,video
+#    env_file:
+#    - frigate.env
+#
+#  frigate-live-view:
+#    build: frigate-live-view/.
+#    restart: unless-stopped
+#    ports:
+#    - 5001:80
+#
+#  double-take:
+#    image: jakowenko/double-take
+#    restart: unless-stopped
+#    volumes:
+#    - ~/double-take:/.storage
+#    ports:
+#    - 3000:3000
+#    env_file:
+#    - double-take.env
 
   deepstack-ai:
-    image: deepquestai/deepstack
+    image: deepquestai/deepstack:gpu
     restart: unless-stopped
+    runtime: nvidia
     environment:
     - VISION-DETECTION=True
     - VISION-FACE=True
