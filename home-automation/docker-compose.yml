@@ -124,6 +124,7 @@ services:
     - TZ=America/Chicago
     #- RESOLUTION=1270x650x24
     #- RESOLUTION=1440x768x24
+    #- RESOLUTION=1640x768x24
     #- RESOLUTION=1918x902x24
     #ports:
     #- 8082:8080
