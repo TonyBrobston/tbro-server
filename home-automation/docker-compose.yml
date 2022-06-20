@@ -61,14 +61,23 @@ services:
     restart: unless-stopped
     volumes:
       - ~/home-assistant:/config
+    ports:
+      - 8123:8123
 
   mdns-repeater:
     image: angelnu/mdns_repeater
     restart: unless-stopped
     network_mode: host
     environment:
-    - hostNIC=enp4s0
-    - dockerNIC=br-de87821a94e9
+    - hostNIC=eno1
+    - dockerNIC=br-e6cbe9582c38
+
+#  whole-home-hvac-control-mqtt:
+#    build: ../../whole-home-hvac-control-mqtt/.
+#    volumes:
+#    - ./whole-home-hvac-control-mqtt:/home
+#    environment:
+#      OPTIONS_FILE_PATH: '/home/options.json'
 
   plex:
     image: linuxserver/plex
@@ -124,6 +133,7 @@ services:
     - TZ=America/Chicago
     #- RESOLUTION=1270x650x24
     #- RESOLUTION=1440x768x24
+    #- RESOLUTION=1640x768x24
     #- RESOLUTION=1918x902x24
     #ports:
     #- 8082:8080
@@ -176,7 +186,6 @@ services:
     runtime: nvidia
     environment:
     - VISION-DETECTION=True
-    - VISION-FACE=True
     volumes:
     - /RAID/deepstack/datastore:/datastore
 
@@ -188,3 +197,4 @@ services:
     volumes:
     - ./mosquitto/config:/mosquitto/config
     - ~/mosquitto/data:/mosquitto/data
+
