@@ -1,0 +1,174 @@
+{
+  "house": {
+    "rooms": [
+      {
+        "actualTemperatureStateTopic": "shellies/office/sensor/temperature",
+        "name": "Office",
+        "targetTemperatureStateTopic": "stat/office/target_temperature",
+        "vents": [
+          {
+            "closePositionPayload": "close",
+            "closedStatePayload": "closed",
+            "positionCommandTopic": "cmd/office/vent",
+            "name": "East",
+            "openPositionPayload": "open",
+            "openedStatePayload": "opened",
+            "positionStateTopic": "stat/office/vent"
+          }
+        ]
+      },
+      {
+        "actualTemperatureStateTopic": "shellies/guest-bedroom/sensor/temperature",
+        "name": "Guest Bedroom",
+        "targetTemperatureStateTopic": "stat/guest_bedroom/target_temperature",
+        "vents": [
+          {
+            "closePositionPayload": "close",
+            "closedStatePayload": "closed",
+            "positionCommandTopic": "cmd/guest_bedroom/vent",
+            "name": "East",
+            "openPositionPayload": "open",
+            "openedStatePayload": "opened",
+            "positionStateTopic": "stat/guest_bedroom/vent"
+          }
+        ]
+      },
+      {
+        "actualTemperatureStateTopic": "shellies/master-bedroom/sensor/temperature",
+        "name": "Master Bedroom",
+        "targetTemperatureStateTopic": "stat/master_bedroom/target_temperature",
+        "vents": [
+          {
+            "closePositionPayload": "close",
+            "closedStatePayload": "closed",
+            "positionCommandTopic": "cmd/master_bedroom/vent",
+            "name": "West",
+            "openPositionPayload": "open",
+            "openedStatePayload": "opened",
+            "positionStateTopic": "stat/master_bedroom/vent"
+          }
+        ]
+      },
+      {
+        "actualTemperatureStateTopic": "shellies/upstairs-bathroom/sensor/temperature",
+        "name": "Upstairs Bathroom",
+        "targetTemperatureStateTopic": "stat/upstairs_bathroom/target_temperature",
+        "vents": [
+          {
+            "closePositionPayload": "close",
+            "closedStatePayload": "closed",
+            "positionCommandTopic": "cmd/upstairs_bathroom/vent",
+            "name": "North",
+            "openPositionPayload": "open",
+            "openedStatePayload": "opened",
+            "positionStateTopic": "stat/upstairs_bathroom/vent"
+          }
+        ]
+      },
+      {
+        "actualTemperatureStateTopic": "stat/ecobee/actual_temperature",
+        "name": "Living Room",
+        "targetTemperatureStateTopic": "stat/living_room/target_temperature",
+        "vents": [
+          {
+            "closePositionPayload": "close",
+            "closedStatePayload": "closed",
+            "positionCommandTopic": "cmd/living_room_northeast/vent",
+            "name": "Northeast",
+            "openPositionPayload": "open",
+            "openedStatePayload": "opened",
+            "positionStateTopic": "stat/living_room_northeast/vent"
+          },
+          {
+            "closePositionPayload": "close",
+            "closedStatePayload": "closed",
+            "positionCommandTopic": "cmd/living_room_southeast/vent",
+            "name": "Southeast",
+            "openPositionPayload": "open",
+            "openedStatePayload": "opened",
+            "positionStateTopic": "stat/living_room_southeast/vent"
+          }
+        ]
+      },
+      {
+        "actualTemperatureStateTopic": "stat/ecobee/actual_temperature",
+        "name": "Kitchen",
+        "targetTemperatureStateTopic": "stat/kitchen/target_temperature",
+        "vents": [
+          {
+            "closePositionPayload": "close",
+            "closedStatePayload": "closed",
+            "positionCommandTopic": "cmd/kitchen_northwest/vent",
+            "name": "Northwest",
+            "openPositionPayload": "open",
+            "openedStatePayload": "opened",
+            "positionStateTopic": "stat/kitchen_northwest/vent"
+          },
+          {
+            "closePositionPayload": "close",
+            "closedStatePayload": "closed",
+            "positionCommandTopic": "cmd/kitchen_south/vent",
+            "name": "South",
+            "openPositionPayload": "open",
+            "openedStatePayload": "opened",
+            "positionStateTopic": "stat/kitchen_south/vent"
+          }
+        ]
+      },
+      {
+        "actualTemperatureStateTopic": "shellies/basement/sensor/temperature",
+        "name": "Basement",
+        "targetTemperatureStateTopic": "stat/basement/target_temperature",
+        "vents": [
+          {
+            "closePositionPayload": "close",
+            "closedStatePayload": "closed",
+            "positionCommandTopic": "cmd/basement_west/vent",
+            "name": "West",
+            "openPositionPayload": "open",
+            "openedStatePayload": "opened",
+            "positionStateTopic": "stat/basement_west/vent"
+          },
+          {
+            "closePositionPayload": "close",
+            "closedStatePayload": "closed",
+            "positionCommandTopic": "cmd/basement_northeast/vent",
+            "name": "Northeast",
+            "openPositionPayload": "open",
+            "openedStatePayload": "opened",
+            "positionStateTopic": "stat/basement_northeast/vent"
+          },
+          {
+            "closePositionPayload": "close",
+            "closedStatePayload": "closed",
+            "positionCommandTopic": "cmd/basement_southeast/vent",
+            "name": "Southeast",
+            "openPositionPayload": "open",
+            "openedStatePayload": "opened",
+            "positionStateTopic": "stat/basement_southeast/vent"
+          }
+        ]
+      }
+    ],
+    "thermostat": {
+      "actionStateTopic": "stat/ecobee/action",
+      "actualTemperatureStateTopic": "stat/ecobee/actual_temperature",
+      "coolModePayload": "cool",
+      "coolingActionPayload": "cooling",
+      "heatModePayload": "heat",
+      "heatingActionPayload": "heating",
+      "idleActionPayload": "idle",
+      "modeStateTopic": "stat/ecobee/mode",
+      "name": "Living Room",
+      "targetTemperatureCommandTopic": "cmd/ecobee/temperature",
+      "targetTemperatureStateTopic": "stat/ecobee/target_temperature"
+    }
+  },
+  "log": true,
+  "mqttConnection": {
+    "host": "mqtt-broker",
+    "port": 1883,
+    "username": "mosquitto",
+    "password": ""
+  }
+}
