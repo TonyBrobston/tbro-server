@@ -1,3 +1,4 @@
+options.json
 secrets.json
 passwordfile
 *.env
