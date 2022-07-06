@@ -67,14 +67,14 @@
       },
       {
         "actualTemperatureStateTopic": "stat/ecobee/actual_temperature",
-        "name": "Living Room",
-        "targetTemperatureStateTopic": "stat/living_room/target_temperature",
+        "name": "Main Floor",
+        "targetTemperatureStateTopic": "stat/main_floor/target_temperature",
         "vents": [
           {
             "closePositionPayload": "close",
             "closedStatePayload": "closed",
             "positionCommandTopic": "cmd/living_room_northeast/vent",
-            "name": "Northeast",
+            "name": "Living Room Northeast",
             "openPositionPayload": "open",
             "openedStatePayload": "opened",
             "positionStateTopic": "stat/living_room_northeast/vent"
@@ -83,23 +83,16 @@
             "closePositionPayload": "close",
             "closedStatePayload": "closed",
             "positionCommandTopic": "cmd/living_room_southeast/vent",
-            "name": "Southeast",
+            "name": "Living Room Southeast",
             "openPositionPayload": "open",
             "openedStatePayload": "opened",
             "positionStateTopic": "stat/living_room_southeast/vent"
-          }
-        ]
-      },
-      {
-        "actualTemperatureStateTopic": "stat/ecobee/actual_temperature",
-        "name": "Kitchen",
-        "targetTemperatureStateTopic": "stat/kitchen/target_temperature",
-        "vents": [
+          },
           {
             "closePositionPayload": "close",
             "closedStatePayload": "closed",
             "positionCommandTopic": "cmd/kitchen_northwest/vent",
-            "name": "Northwest",
+            "name": "Kitchen Northwest",
             "openPositionPayload": "open",
             "openedStatePayload": "opened",
             "positionStateTopic": "stat/kitchen_northwest/vent"
@@ -108,7 +101,7 @@
             "closePositionPayload": "close",
             "closedStatePayload": "closed",
             "positionCommandTopic": "cmd/kitchen_south/vent",
-            "name": "South",
+            "name": "Kitchen South",
             "openPositionPayload": "open",
             "openedStatePayload": "opened",
             "positionStateTopic": "stat/kitchen_south/vent"
