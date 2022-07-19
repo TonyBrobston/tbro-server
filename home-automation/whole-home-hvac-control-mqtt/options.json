@@ -3,6 +3,7 @@
     "rooms": [
       {
         "actualTemperatureStateTopic": "shellies/office/sensor/temperature",
+	"modeCommandTopic": "stat/office/mode",
         "name": "Office",
         "targetTemperatureStateTopic": "stat/office/target_temperature",
         "vents": [
@@ -19,12 +20,14 @@
       },
       {
         "actualTemperatureStateTopic": "shellies/guest-bedroom/sensor/temperature",
+	"modeCommandTopic": "stat/guest_bedroom/mode",
         "name": "Guest Bedroom",
         "targetTemperatureStateTopic": "stat/guest_bedroom/target_temperature",
         "vents": [
           {
             "closePositionPayload": "close",
             "closedStatePayload": "closed",
+	    "closedWhenIdle": "true",
             "positionCommandTopic": "cmd/guest_bedroom/vent",
             "name": "East",
             "openPositionPayload": "open",
@@ -35,6 +38,7 @@
       },
       {
         "actualTemperatureStateTopic": "shellies/master-bedroom/sensor/temperature",
+	"modeCommandTopic": "stat/master_bedroom/mode",
         "name": "Master Bedroom",
         "targetTemperatureStateTopic": "stat/master_bedroom/target_temperature",
         "vents": [
@@ -51,6 +55,7 @@
       },
       {
         "actualTemperatureStateTopic": "shellies/upstairs-bathroom/sensor/temperature",
+	"modeCommandTopic": "stat/upstairs_bathroom/mode",
         "name": "Upstairs Bathroom",
         "targetTemperatureStateTopic": "stat/upstairs_bathroom/target_temperature",
         "vents": [
@@ -67,6 +72,7 @@
       },
       {
         "actualTemperatureStateTopic": "stat/ecobee/actual_temperature",
+	"modeCommandTopic": "stat/main_floor/mode",
         "name": "Main Floor",
         "targetTemperatureStateTopic": "stat/main_floor/target_temperature",
         "vents": [
@@ -110,12 +116,14 @@
       },
       {
         "actualTemperatureStateTopic": "shellies/basement/sensor/temperature",
+	"modeCommandTopic": "stat/basement/mode",
         "name": "Basement",
         "targetTemperatureStateTopic": "stat/basement/target_temperature",
         "vents": [
           {
             "closePositionPayload": "close",
             "closedStatePayload": "closed",
+	    "closedWhenIdle": "true",
             "positionCommandTopic": "cmd/basement_west/vent",
             "name": "West",
             "openPositionPayload": "open",
@@ -125,6 +133,7 @@
           {
             "closePositionPayload": "close",
             "closedStatePayload": "closed",
+	    "closedWhenIdle": "true",
             "positionCommandTopic": "cmd/basement_northeast/vent",
             "name": "Northeast",
             "openPositionPayload": "open",
@@ -134,6 +143,7 @@
           {
             "closePositionPayload": "close",
             "closedStatePayload": "closed",
+	    "closedWhenIdle": "true",
             "positionCommandTopic": "cmd/basement_southeast/vent",
             "name": "Southeast",
             "openPositionPayload": "open",
