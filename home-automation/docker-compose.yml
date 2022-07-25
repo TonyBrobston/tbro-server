@@ -72,12 +72,12 @@ services:
     - hostNIC=eno1
     - dockerNIC=br-e6cbe9582c38
 
-#  whole-home-hvac-control-mqtt:
-#    build: ../../whole-home-hvac-control-mqtt/.
-#    volumes:
-#    - ./whole-home-hvac-control-mqtt:/home
-#    environment:
-#      OPTIONS_FILE_PATH: '/home/options.json'
+  whole-home-hvac-control-mqtt:
+    build: ../../whole-home-hvac-control-mqtt/.
+    volumes:
+    - ./whole-home-hvac-control-mqtt:/home
+    environment:
+      OPTIONS_FILE_PATH: '/home/options.json'
 
   plex:
     image: linuxserver/plex
@@ -87,6 +87,8 @@ services:
     - /RAID/Output:/data/tesla_cam
     - /MOVIES:/data/movies
     - /TV_SHOWS:/data/tv_shows
+    ports:
+      - 32400:32400
     environment:
       VERSION: docker
       PUID: 1000

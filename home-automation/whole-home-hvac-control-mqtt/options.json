@@ -1,5 +1,8 @@
 {
   "house": {
+    "modeDaytimePayload": "daytime",
+    "modeNighttimePayload": "nighttime",
+    "modeStateTopic": "stat/house/mode",
     "rooms": [
       {
         "actualTemperatureStateTopic": "shellies/office/sensor/temperature",
@@ -38,6 +41,7 @@
       },
       {
         "actualTemperatureStateTopic": "shellies/master-bedroom/sensor/temperature",
+	"isNighttimeRoom": "true",
 	"modeCommandTopic": "stat/master_bedroom/mode",
         "name": "Master Bedroom",
         "targetTemperatureStateTopic": "stat/master_bedroom/target_temperature",
