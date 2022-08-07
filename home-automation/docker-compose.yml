@@ -72,10 +72,10 @@ services:
     - hostNIC=eno1
     - dockerNIC=br-e6cbe9582c38
 
-  whole-home-hvac-control-mqtt:
-    build: ../../whole-home-hvac-control-mqtt/.
+  mqtt-hvac-vent-control:
+    build: ../../mqtt-hvac-vent-control/.
     volumes:
-    - ./whole-home-hvac-control-mqtt:/home
+    - ./mqtt-hvac-vent-control:/home
     environment:
       OPTIONS_FILE_PATH: '/home/options.json'
 
