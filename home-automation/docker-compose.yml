@@ -64,6 +64,17 @@ services:
     ports:
       - 8123:8123
 
+  esphome:
+    image: esphome/esphome
+    restart: unless-stopped
+    volumes:
+      - ~/esphome/config:/config
+      - /etc/localtime:/etc/localtime:ro
+        #    ports:
+        #      - 6052:6052
+    network_mode: host
+    privileged: true
+
   mdns-repeater:
     image: angelnu/mdns_repeater
     restart: unless-stopped
@@ -71,14 +82,6 @@ services:
     environment:
     - hostNIC=eno1
     - dockerNIC=br-e6cbe9582c38
-
-  mqtt-hvac-vent-control:
-    image: brobstoncreations/mqtt-hvac-vent-control
-    # build: ../../mqtt-hvac-vent-control/.
-    volumes:
-    - ./mqtt-hvac-vent-control:/home
-    environment:
-      OPTIONS_FILE_PATH: '/home/options.json'
 
   plex:
     image: linuxserver/plex
@@ -148,49 +151,12 @@ services:
         max-file: "2"
     command: -c /etc/supervisor/conf.d/supervisord-service.conf
 
-#  frigate:
-#    image: blakeblackshear/frigate:stable-amd64nvidia
-#    restart: unless-stopped
-#    runtime: nvidia
-#    privileged: true
-#    shm_size: '1g'
-#    ports:
-#    - 5000:5000
-#    volumes:
-#    - /etc/localtime:/etc/localtime:ro
-#    - ~/frigate:/config
-#    - /RAID/frigate/recordings:/media/frigate/recordings
-#    - /RAID/frigate/clips:/media/frigate/clips
-#    environment:
-#      - NVIDIA_VISIBLE_DEVICES=all
-#      - NVIDIA_DRIVER_CAPABILITIES=compute,utility,video
-#    env_file:
-#    - frigate.env
-#
-#  frigate-live-view:
-#    build: frigate-live-view/.
-#    restart: unless-stopped
-#    ports:
-#    - 5001:80
-#
-#  double-take:
-#    image: jakowenko/double-take
-#    restart: unless-stopped
-#    volumes:
-#    - ~/double-take:/.storage
-#    ports:
-#    - 3000:3000
-#    env_file:
-#    - double-take.env
-
   deepstack-ai:
     image: deepquestai/deepstack:gpu
     restart: unless-stopped
     runtime: nvidia
     environment:
     - VISION-DETECTION=True
-    volumes:
-    - /RAID/deepstack/datastore:/datastore
 
   mqtt-broker:
     image: eclipse-mosquitto
