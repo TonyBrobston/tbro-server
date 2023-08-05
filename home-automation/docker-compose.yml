@@ -1,17 +1,6 @@
 version: '3.8'
 
 services:
-  caddy:
-    build: caddy/.
-    restart: unless-stopped
-    ports:
-    - 80:80
-    - 443:443
-    volumes:
-    - ./caddy/Caddyfile:/etc/caddy/Caddyfile
-    env_file:
-    - caddy/caddy.env
-
   unifi-controller:
     image: linuxserver/unifi-controller
     restart: unless-stopped
@@ -115,9 +104,9 @@ services:
     #- RESOLUTION=1440x768x24
     #- RESOLUTION=1640x768x24
     #- RESOLUTION=1918x902x24
-    #ports:
+    ports:
     #- 8082:8080
-    #- 8081:8081
+    - 8081:8081
     volumes:
     - /RAID/blue-iris:/home/wineuser/prefix:rw
     logging:
