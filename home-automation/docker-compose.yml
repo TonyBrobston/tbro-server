@@ -107,7 +107,9 @@ services:
     #- 8082:8080
     - 8081:8081
     volumes:
-    - /RAID/blue-iris:/home/wineuser/prefix:rw
+    - ~/blue-iris:/home/wineuser/prefix:rw
+    - ~/blue-iris-stored:/home/wineuser/prefix/drive_c/BlueIris/New
+    - /Blue-Iris:/home/wineuser/prefix/drive_c/BlueIris/Stored
     logging:
       options:
         max-size: 5m
