@@ -50,9 +50,8 @@ services:
     restart: unless-stopped
     volumes:
     - ~/plex/config:/config
-    - /RAID/Output:/data/tesla_cam
-    - /MOVIES:/data/movies
-    - /TV_SHOWS:/data/tv_shows
+    - /Media/Movies:/movies
+    - /Media/Tv_Shows:/tv_shows
     ports:
       - 32400:32400
     environment:
@@ -60,6 +59,8 @@ services:
       PUID: 1000
       PGID: 1000
       TZ: America/Chicago
+    env_file:
+    - .env
 
   samba:
     image: dperson/samba
