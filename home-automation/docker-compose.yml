@@ -46,21 +46,21 @@ services:
     - dockerNIC=br-e6cbe9582c38
 
   plex:
-    image: linuxserver/plex
-    restart: unless-stopped
+    image: lscr.io/linuxserver/plex:latest
+    ports:
+    - 32400:32400
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Chicago
+      VERSION: docker
+    env_file:
+    - .env
     volumes:
     - ~/plex/config:/config
     - /Media/Movies:/movies
     - /Media/Tv_Shows:/tv_shows
-    ports:
-      - 32400:32400
-    environment:
-      VERSION: docker
-      PUID: 1000
-      PGID: 1000
-      TZ: America/Chicago
-    env_file:
-    - .env
+    restart: unless-stopped
 
   samba:
     image: dperson/samba
@@ -93,29 +93,29 @@ services:
     - /RAID/Output:/root/Videos/Tesla_Dashcam
     command: '--swap --rear --delete_source --layout DIAMOND --quality HIGH --fps 33 --gpu_type nvidia --compression veryslow /root/Import'
 
-  blue-iris:
-    image: leonowski/docker-blueiris:run_as_service
-    restart: unless-stopped
-    # privileged: true
-    init: true
-    environment:
-    - TZ=America/Chicago
-    #- RESOLUTION=1270x650x24
-    #- RESOLUTION=1440x768x24
-    #- RESOLUTION=1640x768x24
-    #- RESOLUTION=1918x902x24
-    ports:
-    #- 8082:8080
-    - 8081:8081
-    volumes:
-    - ~/blue-iris:/home/wineuser/prefix:rw
-    - ~/blue-iris-stored:/home/wineuser/prefix/drive_c/BlueIris/New
-    - /Blue-Iris:/home/wineuser/prefix/drive_c/BlueIris/Stored
-    logging:
-      options:
-        max-size: 5m
-        max-file: "2"
-    command: -c /etc/supervisor/conf.d/supervisord-service.conf
+#  blue-iris:
+#    image: leonowski/docker-blueiris:run_as_service
+#    restart: unless-stopped
+#    # privileged: true
+#    init: true
+#    environment:
+#    - TZ=America/Chicago
+#    #- RESOLUTION=1270x650x24
+#    #- RESOLUTION=1440x768x24
+#    #- RESOLUTION=1640x768x24
+#    #- RESOLUTION=1918x902x24
+#    ports:
+#    #- 8082:8080
+#    - 8081:8081
+#    volumes:
+#    - ~/blue-iris:/home/wineuser/prefix:rw
+#    - ~/blue-iris-stored:/home/wineuser/prefix/drive_c/BlueIris/New
+#    - /Blue-Iris:/home/wineuser/prefix/drive_c/BlueIris/Stored
+#    logging:
+#      options:
+#        max-size: 5m
+#        max-file: "2"
+#    command: -c /etc/supervisor/conf.d/supervisord-service.conf
 
   deepstack-ai:
     image: deepquestai/deepstack:gpu
