@@ -93,6 +93,24 @@ services:
     - /RAID/Output:/root/Videos/Tesla_Dashcam
     command: '--swap --rear --delete_source --layout DIAMOND --quality HIGH --fps 33 --gpu_type nvidia --compression veryslow /root/Import'
 
+  frigate:
+    image: ghcr.io/blakeblackshear/frigate:stable
+    restart: unless-stopped
+    privileged: true
+    shm_size: '1g'
+    ports:
+    - 5000:5000
+    - 8554:8554
+    - 8555:8555/tcp
+    - 8555:8555/udp
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - ./frigate/config.yml:/config/config.yml
+    - ~/frigate:/config
+    - /Blue-Iris:/media/frigate
+    env_file:
+    - frigate/frigate.env
+
 #  blue-iris:
 #    image: leonowski/docker-blueiris:run_as_service
 #    restart: unless-stopped
@@ -117,12 +135,12 @@ services:
 #        max-file: "2"
 #    command: -c /etc/supervisor/conf.d/supervisord-service.conf
 
-  deepstack-ai:
-    image: deepquestai/deepstack:gpu
-    restart: unless-stopped
-    runtime: nvidia
-    environment:
-    - VISION-DETECTION=True
+#  deepstack-ai:
+#    image: deepquestai/deepstack:gpu
+#    restart: unless-stopped
+#    runtime: nvidia
+#    environment:
+#    - VISION-DETECTION=True
 
   mqtt-broker:
     image: eclipse-mosquitto

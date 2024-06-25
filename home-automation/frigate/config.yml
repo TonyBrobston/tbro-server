@@ -1,0 +1,54 @@
+mqtt:
+  enabled: False
+
+cameras:
+  house_east:
+    enabled: True
+    ffmpeg:
+      inputs:
+        - path: rtsp://admin:{FRIGATE_HOUSE_EAST_PASSWORD}@{FRIGATE_HOUSE_EAST_IP}:554/Streaming/Channels/101
+          roles:
+            - detect
+            - record
+  house_northeast:
+    enabled: True
+    ffmpeg:
+      inputs:
+        - path: rtsp://admin:{FRIGATE_HOUSE_NORTHEAST_PASSWORD}@{FRIGATE_HOUSE_NORTHEAST_IP}:554/Streaming/Channels/101
+          roles:
+            - detect
+            - record
+  house_west:
+    enabled: True
+    ffmpeg:
+      inputs:
+        - path: rtsp://admin:{FRIGATE_HOUSE_WEST_PASSWORD}@{FRIGATE_HOUSE_WEST_IP}:554/Streaming/Channels/101
+          roles:
+            - detect
+            - record
+  garage_east:
+    enabled: True
+    ffmpeg:
+      inputs:
+        - path: rtsp://admin:{FRIGATE_GARAGE_EAST_PASSWORD}@{FRIGATE_GARAGE_EAST_IP}:554/Streaming/Channels/101
+          roles:
+            - detect
+            - record
+  garage_north:
+    enabled: True
+    ffmpeg:
+      inputs:
+        - path: rtsp://admin:{FRIGATE_GARAGE_NORTH_PASSWORD}@{FRIGATE_GARAGE_NORTH_IP}:554/Streaming/Channels/101
+          roles:
+            - detect
+            - record
+
+record:
+  enabled: True
+  retain:
+    days: 60
+    mode: all
+  events:
+    retain:
+      default: 30
+      mode: motion
