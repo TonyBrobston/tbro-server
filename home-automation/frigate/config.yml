@@ -4,6 +4,8 @@ mqtt:
 cameras:
   house_east:
     enabled: true
+    ui:
+      order: 1
     ffmpeg:
       inputs:
         - path: 
@@ -17,6 +19,8 @@ cameras:
         - 0.886,0.933,0.889,0.958,0.793,0.954,0.795,0.928
   house_northeast:
     enabled: true
+    ui:
+      order: 0
     ffmpeg:
       inputs:
         - path: 
@@ -27,8 +31,10 @@ cameras:
     motion:
       mask:
         - 0.886,0.931,0.889,0.956,0.795,0.957,0.792,0.928
-        - 0.316,0.258,0.636,0.223,0.853,0.256,1,0.292,1,0,0,0,0,0.34
+        - 0.303,0.27,0.636,0.223,0.853,0.256,1,0.292,1,0,0,0,0,1,0.13,1
   house_west:
+    ui:
+      order: 4
     enabled: true
     ffmpeg:
       inputs:
@@ -42,6 +48,8 @@ cameras:
         - 0.891,0.963,0.89,0.924,0.789,0.931,0.796,0.964
         - 0,0.267,0.357,0.125,0.509,0,0,0
   garage_east:
+    ui:
+      order: 3
     enabled: true
     ffmpeg:
       inputs:
@@ -56,6 +64,8 @@ cameras:
         - 0.996,0.003,0.995,0.227,0.897,0.204,0.768,0.137,0.498,0.128,0.504,0.005
   garage_north:
     enabled: true
+    ui:
+      order: 2
     ffmpeg:
       inputs:
         - path: 
@@ -71,10 +81,18 @@ record:
   retain:
     days: 30
     mode: all
-  events:
-    retain:
-      default: 30
-      mode: motion
+
+objects:
+  track:
+    - person
+
+review:
+  alerts:
+    labels:
+      - person
+  detections:
+    labels:
+      - person
 
 detectors:
   tensorrt:
