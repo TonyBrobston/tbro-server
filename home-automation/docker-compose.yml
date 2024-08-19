@@ -84,6 +84,8 @@ services:
     command: '-s "Mount;/mount;yes;no;no;$USERNAME" -u "$USERNAME;$PASSWORD"'
 
   tesla_dashcam:
+    #build:
+    #  dockerfile: ../../tesla_dashcam/Dockerfile
     image: magicalyak/tesla_dashcam
     restart: unless-stopped
     environment:
@@ -94,7 +96,7 @@ services:
     command: '--swap --rear --delete_source --layout DIAMOND --quality HIGH --fps 33 --gpu_type nvidia --compression veryslow /root/Import'
 
   frigate:
-    image: ghcr.io/blakeblackshear/frigate:stable
+    image: ghcr.io/blakeblackshear/frigate:stable-tensorrt
     restart: unless-stopped
     privileged: true
     shm_size: '1g'
@@ -110,37 +112,12 @@ services:
     - /Blue-Iris:/media/frigate
     env_file:
     - frigate/frigate.env
-
-#  blue-iris:
-#    image: leonowski/docker-blueiris:run_as_service
-#    restart: unless-stopped
-#    # privileged: true
-#    init: true
-#    environment:
-#    - TZ=America/Chicago
-#    #- RESOLUTION=1270x650x24
-#    #- RESOLUTION=1440x768x24
-#    #- RESOLUTION=1640x768x24
-#    #- RESOLUTION=1918x902x24
-#    ports:
-#    #- 8082:8080
-#    - 8081:8081
-#    volumes:
-#    - ~/blue-iris:/home/wineuser/prefix:rw
-#    - ~/blue-iris-stored:/home/wineuser/prefix/drive_c/BlueIris/New
-#    - /Blue-Iris:/home/wineuser/prefix/drive_c/BlueIris/Stored
-#    logging:
-#      options:
-#        max-size: 5m
-#        max-file: "2"
-#    command: -c /etc/supervisor/conf.d/supervisord-service.conf
-
-#  deepstack-ai:
-#    image: deepquestai/deepstack:gpu
-#    restart: unless-stopped
-#    runtime: nvidia
-#    environment:
-#    - VISION-DETECTION=True
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
 
   mqtt-broker:
     image: eclipse-mosquitto

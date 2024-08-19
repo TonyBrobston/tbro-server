@@ -1,54 +1,92 @@
 mqtt:
-  enabled: False
+  enabled: false
 
 cameras:
   house_east:
-    enabled: True
+    enabled: true
     ffmpeg:
       inputs:
-        - path: rtsp://admin:{FRIGATE_HOUSE_EAST_PASSWORD}@{FRIGATE_HOUSE_EAST_IP}:554/Streaming/Channels/101
+        - path: 
+            rtsp://admin:{FRIGATE_HOUSE_EAST_PASSWORD}@{FRIGATE_HOUSE_EAST_IP}:554/Streaming/Channels/101
           roles:
             - detect
             - record
+    motion:
+      mask:
+        - 0,0,820,0,1109,84,509,87,0,170
+        - 1134,672,1138,690,1015,687,1018,668
   house_northeast:
-    enabled: True
+    enabled: true
     ffmpeg:
       inputs:
-        - path: rtsp://admin:{FRIGATE_HOUSE_NORTHEAST_PASSWORD}@{FRIGATE_HOUSE_NORTHEAST_IP}:554/Streaming/Channels/101
+        - path: 
+            rtsp://admin:{FRIGATE_HOUSE_NORTHEAST_PASSWORD}@{FRIGATE_HOUSE_NORTHEAST_IP}:554/Streaming/Channels/101
           roles:
             - detect
             - record
+    motion:
+      mask:
+        - 1134,670,1138,688,1018,689,1014,668
   house_west:
-    enabled: True
+    enabled: true
     ffmpeg:
       inputs:
-        - path: rtsp://admin:{FRIGATE_HOUSE_WEST_PASSWORD}@{FRIGATE_HOUSE_WEST_IP}:554/Streaming/Channels/101
+        - path: 
+            rtsp://admin:{FRIGATE_HOUSE_WEST_PASSWORD}@{FRIGATE_HOUSE_WEST_IP}:554/Streaming/Channels/101
           roles:
             - detect
             - record
+    motion:
+      mask:
+        - 1140,693,1139,665,1010,670,1019,694
   garage_east:
-    enabled: True
+    enabled: true
     ffmpeg:
       inputs:
-        - path: rtsp://admin:{FRIGATE_GARAGE_EAST_PASSWORD}@{FRIGATE_GARAGE_EAST_IP}:554/Streaming/Channels/101
+        - path: 
+            rtsp://admin:{FRIGATE_GARAGE_EAST_PASSWORD}@{FRIGATE_GARAGE_EAST_IP}:554/Streaming/Channels/101
           roles:
             - detect
             - record
+    motion:
+      mask:
+        - 1143,670,1135,689,1022,694,1021,674
   garage_north:
-    enabled: True
+    enabled: true
     ffmpeg:
       inputs:
-        - path: rtsp://admin:{FRIGATE_GARAGE_NORTH_PASSWORD}@{FRIGATE_GARAGE_NORTH_IP}:554/Streaming/Channels/101
+        - path: 
+            rtsp://admin:{FRIGATE_GARAGE_NORTH_PASSWORD}@{FRIGATE_GARAGE_NORTH_IP}:554/Streaming/Channels/101
           roles:
             - detect
             - record
 
+    motion:
+      mask:
+        - 0,0,1280,0,1280,259,657,171,0,193
+        - 1141,668,1143,688,1015,690,1017,668
 record:
-  enabled: True
+  enabled: true
   retain:
-    days: 60
+    days: 30
     mode: all
   events:
     retain:
       default: 30
       mode: motion
+
+detectors:
+  tensorrt:
+    type: tensorrt
+    device: 0
+
+model:
+  path: /config/model_cache/tensorrt/yolov7-320.trt
+  input_tensor: nchw
+  input_pixel_format: rgb
+  width: 320
+  height: 320
+
+#ffmpeg:
+#  hwaccel_args: preset-nvidia-h264
+version: 0.14
