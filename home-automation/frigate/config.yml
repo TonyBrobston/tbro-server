@@ -102,6 +102,9 @@ objects:
   track:
     - person
 
+ffmpeg:
+  hwaccel_args: preset-nvidia-h264
+
 review:
   alerts:
     labels:

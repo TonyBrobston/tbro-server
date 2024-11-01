@@ -117,7 +117,12 @@ services:
         reservations:
           devices:
             - driver: nvidia
+              count: 1
               capabilities: [gpu]
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "50m"
 
   mqtt-broker:
     image: eclipse-mosquitto
