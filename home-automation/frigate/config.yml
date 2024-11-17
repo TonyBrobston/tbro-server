@@ -1,5 +1,8 @@
 mqtt:
-  enabled: false
+  enabled: true
+  host: mqtt-broker
+  user: "{FRIGATE_MQTT_USER}"
+  password: "{FRIGATE_MQTT_PASSWORD}"
 
 cameras:
   house_east:
