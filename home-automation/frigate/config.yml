@@ -98,12 +98,15 @@ cameras:
 record:
   enabled: true
   retain:
-    days: 30
+    days: 40
     mode: all
 
 objects:
   track:
     - person
+  filters:
+    person:
+      min_score: 0.6
 
 ffmpeg:
   hwaccel_args: preset-nvidia-h264
