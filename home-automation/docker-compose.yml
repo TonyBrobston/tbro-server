@@ -1,102 +1,6 @@
 services:
-  unifi-controller:
-    image: linuxserver/unifi-controller
-    restart: unless-stopped
-    environment:
-    - PUID=1000
-    - PGID=1000
-    ports:
-    - 3478:3478/udp
-    - 10001:10001/udp
-    - 8080:8080
-    - 8443:8443
-    - 1900:1900/udp
-    - 8880:8880
-    - 6789:6789
-    - 5514:5514
-    volumes:
-    - ~/unifi-controller:/config
-        
-  home-assistant:
-    image: homeassistant/home-assistant
-    restart: unless-stopped
-    volumes:
-      - ~/home-assistant:/config
-    ports:
-      - 8123:8123
-      - 5683:5683/udp
-
-  esphome:
-    image: esphome/esphome
-    restart: unless-stopped
-    volumes:
-      - ~/esphome/config:/config
-      - /etc/localtime:/etc/localtime:ro
-        #    ports:
-        #      - 6052:6052
-    network_mode: host
-    privileged: true
-
-  mdns-repeater:
-    image: angelnu/mdns_repeater
-    restart: unless-stopped
-    network_mode: host
-    environment:
-    - hostNIC=eno1
-    - dockerNIC=br-e6cbe9582c38
-
-  plex:
-    image: lscr.io/linuxserver/plex:latest
-    ports:
-    - 32400:32400
-    environment:
-      PUID: 1000
-      PGID: 1000
-      TZ: America/Chicago
-      VERSION: docker
-    env_file:
-    - .env
-    volumes:
-    - ~/plex/config:/config
-    - /Media/Movies:/movies
-    - /Media/Tv_Shows:/tv_shows
-    restart: unless-stopped
-
-  samba:
-    image: dperson/samba
-    restart: unless-stopped
-    ports:
-    - 139:139
-    - 445:445
-    volumes:
-    - /RAID/Input:/mount
-    environment:
-      USERID: 1000
-      GROUPID: 1000
-      TZ: America/Chicago
-    env_file:
-    - .env
-    read_only: true
-    tmpfs:
-    - /tmp
-    stdin_open: true
-    tty: true
-    command: '-s "Mount;/mount;yes;no;no;$USERNAME" -u "$USERNAME;$PASSWORD"'
-
-#  tesla_dashcam:
-#    #build:
-#    #  dockerfile: ../../tesla_dashcam/Dockerfile
-#    image: magicalyak/tesla_dashcam
-#    restart: unless-stopped
-#    environment:
-#    - TZ=America/Chicago
-#    volumes:
-#    - /RAID/Input:/root/Import
-#    - /RAID/Output:/root/Videos/Tesla_Dashcam
-#    command: '--swap --rear --delete_source --layout DIAMOND --quality HIGH --fps 33 --gpu_type nvidia --compression veryslow /root/Import'
-
   frigate:
-    image: ghcr.io/blakeblackshear/frigate:stable-tensorrt
+    image: ghcr.io/blakeblackshear/frigate:stable-standard-arm64
     restart: unless-stopped
     privileged: true
     shm_size: '1g'
@@ -109,26 +13,18 @@ services:
     - /etc/localtime:/etc/localtime:ro
     - ./frigate/config.yml:/config/config.yml
     - ~/frigate:/config
-    - /Blue-Iris:/media/frigate
+#    - /Blue-Iris:/media/frigate
     env_file:
     - frigate/frigate.env
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+#    deploy:
+#      resources:
+#        reservations:
+#          devices:
+#            - driver: nvidia
+#              count: 1
+#              capabilities: [gpu]
     logging:
       driver: "json-file"
       options:
           max-size: "50m"
 
-  mqtt-broker:
-    image: eclipse-mosquitto
-    restart: unless-stopped
-    ports:
-    - 1883:1883
-    volumes:
-    - ./mosquitto/config:/mosquitto/config
-    - ~/mosquitto/data:/mosquitto/data

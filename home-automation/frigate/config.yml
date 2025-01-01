@@ -1,8 +1,5 @@
 mqtt:
-  enabled: true
-  host: mqtt-broker
-  user: "{FRIGATE_MQTT_USER}"
-  password: "{FRIGATE_MQTT_PASSWORD}"
+  enabled: false
 
 cameras:
   house_east:
@@ -98,7 +95,7 @@ cameras:
 record:
   enabled: true
   retain:
-    days: 40
+    days: 1
     mode: all
 
 objects:
@@ -108,9 +105,6 @@ objects:
     person:
       min_score: 0.6
 
-ffmpeg:
-  hwaccel_args: preset-nvidia-h264
-
 review:
   alerts:
     labels:
@@ -118,17 +112,5 @@ review:
   detections:
     labels:
       - person
-
-detectors:
-  tensorrt:
-    type: tensorrt
-    device: 0
-
-model:
-  path: /config/model_cache/tensorrt/yolov7-320.trt
-  input_tensor: nchw
-  input_pixel_format: rgb
-  width: 320
-  height: 320
 
 version: 0.14
