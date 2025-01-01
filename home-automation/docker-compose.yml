@@ -16,13 +16,6 @@ services:
 #    - /Blue-Iris:/media/frigate
     env_file:
     - frigate/frigate.env
-#    deploy:
-#      resources:
-#        reservations:
-#          devices:
-#            - driver: nvidia
-#              count: 1
-#              capabilities: [gpu]
     logging:
       driver: "json-file"
       options:
