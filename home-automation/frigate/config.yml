@@ -1,8 +1,5 @@
 mqtt:
-  enabled: true
-  host: mqtt-broker
-  user: "{FRIGATE_MQTT_USER}"
-  password: "{FRIGATE_MQTT_PASSWORD}"
+  enabled: false
 
 cameras:
   house_east:
@@ -43,7 +40,7 @@ cameras:
   house_west:
     ui:
       order: 4
-    enabled: true
+    enabled: false
     ffmpeg:
       inputs:
         - path: 
@@ -90,26 +87,26 @@ cameras:
             - record
     motion:
       mask:
-
         - 0.891,0.928,0.893,0.956,0.793,0.958,0.795,0.928
         - 0,0.261,0,0,0.562,0,0.59,0.241,0.487,0.245,0.22,0.213,0.192,0.123
     objects:
       mask: 0,0.261,0,0,0.562,0,0.59,0.241,0.487,0.245,0.22,0.213,0.192,0.123
+
+detectors:
+  coral:
+    type: edgetpu
+    device: usb
+
+#ffmpeg:
+#  hwaccel_args: preset-vaapi
+ffmpeg:
+  hwaccel_args: preset-intel-qsv-h264
+
 record:
   enabled: true
   retain:
-    days: 40
+    days: 1
     mode: all
-
-objects:
-  track:
-    - person
-  filters:
-    person:
-      min_score: 0.6
-
-ffmpeg:
-  hwaccel_args: preset-nvidia-h264
 
 review:
   alerts:
@@ -119,16 +116,12 @@ review:
     labels:
       - person
 
-detectors:
-  tensorrt:
-    type: tensorrt
-    device: 0
 
-model:
-  path: /config/model_cache/tensorrt/yolov7-320.trt
-  input_tensor: nchw
-  input_pixel_format: rgb
-  width: 320
-  height: 320
+objects:
+  track:
+    - person
+  filters:
+    person:
+      min_score: 0.6
 
-version: 0.14
+version: 0.15-0
