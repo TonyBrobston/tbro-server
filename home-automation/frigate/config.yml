@@ -92,6 +92,12 @@ cameras:
         - 0,0.261,0,0,0.562,0,0.59,0.241,0.487,0.245,0.22,0.213,0.192,0.123
     objects:
       mask: 0,0.261,0,0,0.562,0,0.59,0.241,0.487,0.245,0.22,0.213,0.192,0.123
+
+detectors:
+  coral:
+    type: edgetpu
+    device: usb
+
 record:
   enabled: true
   retain:

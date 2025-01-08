@@ -13,7 +13,7 @@ services:
     - /etc/localtime:/etc/localtime:ro
     - ./frigate/config.yml:/config/config.yml
     - ~/frigate:/config
-#    - /Blue-Iris:/media/frigate
+    - ~/frigate-recordings:/media/frigate
     env_file:
     - frigate/frigate.env
     logging:
@@ -21,3 +21,9 @@ services:
       options:
           max-size: "50m"
 
+  device-manager:
+    image: jonathanberi/devmgr
+    privileged: true
+    pid: host
+    entrypoint: nsenter -t 1 -m
+    command: ["ash", "-c", "usbip attach -r host.docker.internal -b 0-1 && tail -f /dev/null"]
