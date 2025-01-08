@@ -4,8 +4,6 @@ mqtt:
 cameras:
   house_east:
     enabled: true
-    ui:
-      order: 1
     ffmpeg:
       inputs:
         - path: 
@@ -13,115 +11,19 @@ cameras:
           roles:
             - detect
             - record
-    motion:
-      mask:
-        - 0,0,0.641,0,0.842,0.106,1,0.235,1,0.367,0.778,0.26,0.576,0.233,0.307,0.315,0,0.453
-        - 0.886,0.933,0.889,0.958,0.793,0.954,0.795,0.928
-    objects:
-      mask: 
-        0,0,0.641,0,0.842,0.106,1,0.235,1,0.363,0.777,0.265,0.579,0.231,0.305,0.312,0,0.455
-  house_northeast:
-    enabled: true
-    ui:
-      order: 0
-    ffmpeg:
-      inputs:
-        - path: 
-            rtsp://admin:{FRIGATE_HOUSE_NORTHEAST_PASSWORD}@{FRIGATE_HOUSE_NORTHEAST_IP}:554/Streaming/Channels/101
-          roles:
-            - detect
-            - record
-    motion:
-      mask:
-        - 0.886,0.931,0.889,0.956,0.795,0.957,0.792,0.928
-        - 0.332,0.285,0.739,0.258,0.844,0.511,1,0.549,1,0,0,0,0,1,0.179,1
-    objects:
-      mask: 0.334,0.283,0.735,0.255,0.923,0.296,1,0.322,1,0,0,0,0,1,0.179,1
-  house_west:
-    ui:
-      order: 4
-    enabled: false
-    ffmpeg:
-      inputs:
-        - path: 
-            rtsp://admin:{FRIGATE_HOUSE_WEST_PASSWORD}@{FRIGATE_HOUSE_WEST_IP}:554/Streaming/Channels/101
-          roles:
-            - detect
-            - record
-    motion:
-      mask:
-        - 0.891,0.963,0.89,0.924,0.789,0.931,0.796,0.964
-        - 0,0.267,0.357,0.125,0.509,0,0,0
-        - 1,0.324,1,0,0.517,0,0.686,0.028,0.819,0.168,0.834,0.215
-    objects:
-      mask:
-        - 0,0.267,0.357,0.125,0.509,0,0,0
-        - 1,0.324,1,0,0.517,0,0.686,0.028,0.819,0.168,0.834,0.215
-  garage_east:
-    ui:
-      order: 3
-    enabled: true
-    ffmpeg:
-      inputs:
-        - path: 
-            rtsp://admin:{FRIGATE_GARAGE_EAST_PASSWORD}@{FRIGATE_GARAGE_EAST_IP}:554/Streaming/Channels/101
-          roles:
-            - detect
-            - record
-    motion:
-      mask:
-        - 0.893,0.931,0.887,0.957,0.798,0.964,0.798,0.936
-        - 1,0,1,0.224,0.92,0.213,0.901,0.306,0.788,0.176,0.5,0.17,0.5,0
-    objects:
-      mask: 1,0,1,0.224,0.92,0.213,0.901,0.306,0.788,0.176,0.499,0.165,0.5,0
-  garage_north:
-    enabled: true
-    ui:
-      order: 2
-    ffmpeg:
-      inputs:
-        - path: 
-            rtsp://admin:{FRIGATE_GARAGE_NORTH_PASSWORD}@{FRIGATE_GARAGE_NORTH_IP}:554/Streaming/Channels/101
-          roles:
-            - detect
-            - record
-    motion:
-      mask:
-        - 0.891,0.928,0.893,0.956,0.793,0.958,0.795,0.928
-        - 0,0.261,0,0,0.562,0,0.59,0.241,0.487,0.245,0.22,0.213,0.192,0.123
-    objects:
-      mask: 0,0.261,0,0,0.562,0,0.59,0.241,0.487,0.245,0.22,0.213,0.192,0.123
 
 detectors:
   coral:
     type: edgetpu
     device: usb
 
-#ffmpeg:
-#  hwaccel_args: preset-vaapi
 ffmpeg:
-  hwaccel_args: preset-intel-qsv-h264
+  hwaccel_args: preset-vaapi
 
 record:
   enabled: true
   retain:
     days: 1
     mode: all
-
-review:
-  alerts:
-    labels:
-      - person
-  detections:
-    labels:
-      - person
-
-
-objects:
-  track:
-    - person
-  filters:
-    person:
-      min_score: 0.6
 
 version: 0.15-0
