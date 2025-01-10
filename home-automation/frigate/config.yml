@@ -95,7 +95,7 @@ cameras:
 detectors:
   coral:
     type: edgetpu
-    device: usb
+    device: pci
 
 #ffmpeg:
 #  hwaccel_args: preset-vaapi

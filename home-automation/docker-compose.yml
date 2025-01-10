@@ -17,6 +17,8 @@ services:
     - ~/frigate-media:/media/frigate
     - /dev/bus/usb:/dev/bus/usb
     - /dev/dri/renderD128:/dev/dri/renderD128
+    - /dev/dri:/dev/dri
+    - /dev:/dev
     env_file:
     - frigate/frigate.env
     logging:
