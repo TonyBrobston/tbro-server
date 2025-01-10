@@ -7,8 +7,19 @@ services:
     shm_size: '1g'
     ports:
     - 5000:5000
+    - 8554:8554
+    - 8555:8555/tcp
+    - 8555:8555/udp
     volumes:
+    - /etc/localtime:/etc/localtime:ro
     - ./frigate/config.yml:/config/config.yml
-    - /dev/dri/renderD128
+    - ~/frigate:/config
+    - ~/frigate-media:/media/frigate
+    - /dev/bus/usb:/dev/bus/usb
+    - /dev/dri/renderD128:/dev/dri/renderD128
     env_file:
     - frigate/frigate.env
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "50m"
