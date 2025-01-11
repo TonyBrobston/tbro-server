@@ -41,9 +41,9 @@ cameras:
     objects:
       mask: 0.334,0.283,0.735,0.255,0.923,0.296,1,0.322,1,0,0,0,0,1,0.179,1
   house_west:
+    enabled: true
     ui:
       order: 4
-    enabled: true
     ffmpeg:
       inputs:
         - path: 
@@ -61,9 +61,9 @@ cameras:
         - 0,0.267,0.357,0.125,0.509,0,0,0
         - 1,0.324,1,0,0.517,0,0.686,0.028,0.819,0.168,0.834,0.215
   garage_east:
+    enabled: true
     ui:
       order: 3
-    enabled: true
     ffmpeg:
       inputs:
         - path: 
@@ -95,6 +95,7 @@ cameras:
         - 0,0.261,0,0,0.562,0,0.59,0.241,0.487,0.245,0.22,0.213,0.192,0.123
     objects:
       mask: 0,0.261,0,0,0.562,0,0.59,0.241,0.487,0.245,0.22,0.213,0.192,0.123
+
 record:
   enabled: true
   retain:

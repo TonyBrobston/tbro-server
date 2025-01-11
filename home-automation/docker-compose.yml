@@ -43,6 +43,9 @@ services:
     - 8880:8880 #optional
     - 6789:6789 #optional
     - 5514:5514/udp #optional
+    - 7444:7444/tcp
+    - 7550:7550/tcp
+    - 7442:7442/tcp
     volumes:
     - ~/unifi-network-application:/config
 
