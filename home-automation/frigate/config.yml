@@ -97,11 +97,6 @@ detectors:
     type: edgetpu
     device: pci
 
-#ffmpeg:
-#  hwaccel_args: preset-vaapi
-ffmpeg:
-  hwaccel_args: preset-intel-qsv-h264
-
 record:
   enabled: true
   retain:
