@@ -1,21 +1,21 @@
 services:
-  unifi-controller:
-    image: linuxserver/unifi-controller
-    restart: unless-stopped
-    environment:
-    - PUID=1000
-    - PGID=1000
-    ports:
-    - 3478:3478/udp
-    - 10001:10001/udp
-    - 8080:8080
-    - 8443:8443
-    - 1900:1900/udp
-    - 8880:8880
-    - 6789:6789
-    - 5514:5514
-    volumes:
-    - ~/unifi-controller:/config
+#  unifi-controller:
+#    image: linuxserver/unifi-controller
+#    restart: unless-stopped
+#    environment:
+#    - PUID=1000
+#    - PGID=1000
+#    ports:
+#    - 3478:3478/udp
+#    - 10001:10001/udp
+#    - 8080:8080
+#    - 8443:8443
+#    - 1900:1900/udp
+#    - 8880:8880
+#    - 6789:6789
+#    - 5514:5514
+#    volumes:
+#    - ~/unifi-controller:/config
 
   unifi-network-application:
     image: lscr.io/linuxserver/unifi-network-application:latest
@@ -142,7 +142,8 @@ services:
 #    command: '--swap --rear --delete_source --layout DIAMOND --quality HIGH --fps 33 --gpu_type nvidia --compression veryslow /root/Import'
 
   frigate:
-    image: ghcr.io/blakeblackshear/frigate:stable-tensorrt
+    #image: ghcr.io/blakeblackshear/frigate:stable-tensorrt
+    image: ghcr.io/blakeblackshear/frigate:stable
     restart: unless-stopped
     privileged: true
     shm_size: '1g'
@@ -156,6 +157,7 @@ services:
     - ./frigate/config.yml:/config/config.yml
     - ~/frigate:/config
     - /Blue-Iris:/media/frigate
+    - /dev/bus/usb:/dev/bus/usb
     env_file:
     - frigate/frigate.env
     deploy:
