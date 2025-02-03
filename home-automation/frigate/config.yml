@@ -1,8 +1,8 @@
 mqtt:
   enabled: true
   host: mqtt-broker
-  user: "{FRIGATE_MQTT_USER}"
-  password: "{FRIGATE_MQTT_PASSWORD}"
+  user: '{FRIGATE_MQTT_USER}'
+  password: '{FRIGATE_MQTT_PASSWORD}'
 
 cameras:
   house_east:
@@ -99,7 +99,7 @@ cameras:
 record:
   enabled: true
   retain:
-    days: 40
+    days: 38
     mode: all
 
 objects:
@@ -135,4 +135,4 @@ detectors:
 #  width: 320
 #  height: 320
 
-version: 0.14
+version: 0.15-1
