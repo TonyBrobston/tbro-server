@@ -99,7 +99,7 @@ cameras:
 record:
   enabled: true
   retain:
-    days: 38
+    days: 32
     mode: all
 
 objects:

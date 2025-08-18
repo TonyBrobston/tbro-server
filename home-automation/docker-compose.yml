@@ -122,12 +122,10 @@ services:
 #    command: '--swap --rear --delete_source --layout DIAMOND --quality HIGH --fps 33 --gpu_type nvidia --compression veryslow /root/Import'
 
   frigate:
-    #image: ghcr.io/blakeblackshear/frigate:stable
-    #image: ghcr.io/blakeblackshear/frigate:0.15.0-beta4
-    image: ghcr.io/blakeblackshear/frigate:0.15.0-beta7
+    image: ghcr.io/blakeblackshear/frigate:stable
     restart: unless-stopped
     privileged: true
-    shm_size: '1g'
+    shm_size: '4g'
     ports:
     - 5000:5000
     - 8554:8554
@@ -161,3 +159,10 @@ services:
     volumes:
     - ./mosquitto/config:/mosquitto/config
     - ~/mosquitto/data:/mosquitto/data
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TOKEN}
