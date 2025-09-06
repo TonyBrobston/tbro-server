@@ -77,6 +77,17 @@ cameras:
         - 1,0,1,0.224,0.92,0.213,0.901,0.306,0.788,0.176,0.5,0.17,0.5,0
     objects:
       mask: 1,0,1,0.224,0.92,0.213,0.901,0.306,0.788,0.176,0.499,0.165,0.5,0
+  garage_west:
+    enabled: true
+    ui:
+      order: 5
+    ffmpeg:
+      inputs:
+        - path: 
+            rtsp://admin:{FRIGATE_GARAGE_WEST_PASSWORD}@{FRIGATE_GARAGE_WEST_IP}:554/Streaming/Channels/101
+          roles:
+            - detect
+            - record
   garage_north:
     enabled: true
     ui:
