@@ -40,26 +40,20 @@ cameras:
         - 0.332,0.285,0.739,0.258,0.844,0.511,1,0.549,1,0,0,0,0,1,0.179,1
     objects:
       mask: 0.334,0.283,0.735,0.255,0.923,0.296,1,0.322,1,0,0,0,0,1,0.179,1
-  house_west:
+  garage_north:
     enabled: true
     ui:
-      order: 4
+      order: 2
     ffmpeg:
       inputs:
         - path: 
-            rtsp://admin:{FRIGATE_HOUSE_WEST_PASSWORD}@{FRIGATE_HOUSE_WEST_IP}:554/Streaming/Channels/101
+            rtsp://admin:{FRIGATE_GARAGE_WEST_PASSWORD}@{FRIGATE_GARAGE_WEST_IP}:554/Streaming/Channels/101
           roles:
             - detect
             - record
-    motion:
-      mask:
-        - 0.891,0.963,0.89,0.924,0.789,0.931,0.796,0.964
-        - 0,0.267,0.357,0.125,0.509,0,0,0
-        - 1,0.324,1,0,0.517,0,0.686,0.028,0.819,0.168,0.834,0.215
-    objects:
-      mask:
-        - 0,0.267,0.357,0.125,0.509,0,0,0
-        - 1,0.324,1,0,0.517,0,0.686,0.028,0.819,0.168,0.834,0.215
+    detect:
+      width: 4096
+      height: 1840
   garage_east:
     enabled: true
     ui:
@@ -80,18 +74,7 @@ cameras:
   garage_west:
     enabled: true
     ui:
-      order: 5
-    ffmpeg:
-      inputs:
-        - path: 
-            rtsp://admin:{FRIGATE_GARAGE_WEST_PASSWORD}@{FRIGATE_GARAGE_WEST_IP}:554/Streaming/Channels/101
-          roles:
-            - detect
-            - record
-  garage_north:
-    enabled: true
-    ui:
-      order: 2
+      order: 4
     ffmpeg:
       inputs:
         - path: 
@@ -101,11 +84,30 @@ cameras:
             - record
     motion:
       mask:
-
         - 0.891,0.928,0.893,0.956,0.793,0.958,0.795,0.928
         - 0,0.261,0,0,0.562,0,0.59,0.241,0.487,0.245,0.22,0.213,0.192,0.123
     objects:
       mask: 0,0.261,0,0,0.562,0,0.59,0.241,0.487,0.245,0.22,0.213,0.192,0.123
+  house_west:
+    enabled: true
+    ui:
+      order: 5
+    ffmpeg:
+      inputs:
+        - path: 
+            rtsp://admin:{FRIGATE_HOUSE_WEST_PASSWORD}@{FRIGATE_HOUSE_WEST_IP}:554/Streaming/Channels/101
+          roles:
+            - detect
+            - record
+    motion:
+      mask:
+        - 0.891,0.963,0.89,0.924,0.789,0.931,0.796,0.964
+        - 0,0.267,0.357,0.125,0.509,0,0,0
+        - 1,0.324,1,0,0.517,0,0.686,0.028,0.819,0.168,0.834,0.215
+    objects:
+      mask:
+        - 0,0.267,0.357,0.125,0.509,0,0,0
+        - 1,0.324,1,0,0.517,0,0.686,0.028,0.819,0.168,0.834,0.215
 
 record:
   enabled: true
