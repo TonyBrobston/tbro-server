@@ -88,27 +88,6 @@ services:
     - /Media/Tv_Shows:/tv_shows
     restart: unless-stopped
 
-#  samba:
-#    image: dperson/samba
-#    restart: unless-stopped
-#    ports:
-#    - 139:139
-#    - 445:445
-#    volumes:
-#    - /RAID/Input:/mount
-#    environment:
-#      USERID: 1000
-#      GROUPID: 1000
-#      TZ: America/Chicago
-#    env_file:
-#    - .env
-#    read_only: true
-#    tmpfs:
-#    - /tmp
-#    stdin_open: true
-#    tty: true
-#    command: '-s "Mount;/mount;yes;no;no;$USERNAME" -u "$USERNAME;$PASSWORD"'
-
 #  tesla_dashcam:
 #    #build:
 #    #  dockerfile: ../../tesla_dashcam/Dockerfile
