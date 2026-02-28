@@ -115,7 +115,9 @@ services:
     - ./frigate/config.yml:/config/config.yml
     - ~/frigate:/config
     - /Blue-Iris:/media/frigate
+    devices:
     - /dev/bus/usb:/dev/bus/usb
+    - /dev/apex_0:/dev/apex_0
     env_file:
     - frigate/frigate.env
     deploy:

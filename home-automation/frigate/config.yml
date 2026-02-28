@@ -131,19 +131,12 @@ review:
       - person
 
 detectors:
-#  tensorrt:
-#    type: tensorrt
-#    device: 0
-  coral:
+  coral_usb:
     type: edgetpu
     device: usb
-
-#model:
-#  path: /config/model_cache/tensorrt/yolov7-320.trt
-#  input_tensor: nchw
-#  input_pixel_format: rgb
-#  width: 320
-#  height: 320
+  coral_pci:
+    type: edgetpu
+    device: pci
 
 version: 0.16-0
 detect:
