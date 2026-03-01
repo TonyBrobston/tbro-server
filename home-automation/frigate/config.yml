@@ -14,8 +14,14 @@ cameras:
         - path: 
             rtsp://admin:{FRIGATE_HOUSE_EAST_PASSWORD}@{FRIGATE_HOUSE_EAST_IP}:554/Streaming/Channels/101
           roles:
-            - detect
             - record
+        - path: 
+            rtsp://admin:{FRIGATE_HOUSE_EAST_PASSWORD}@{FRIGATE_HOUSE_EAST_IP}:554/Streaming/Channels/102
+          roles:
+            - detect
+    detect:
+      width: 1280
+      height: 720
     motion:
       mask:
         - 0,0,0.641,0,0.842,0.106,1,0.235,1,0.367,0.778,0.26,0.576,0.233,0.307,0.315,0,0.453
@@ -32,8 +38,14 @@ cameras:
         - path: 
             rtsp://admin:{FRIGATE_HOUSE_NORTHEAST_PASSWORD}@{FRIGATE_HOUSE_NORTHEAST_IP}:554/Streaming/Channels/101
           roles:
-            - detect
             - record
+        - path: 
+            rtsp://admin:{FRIGATE_HOUSE_NORTHEAST_PASSWORD}@{FRIGATE_HOUSE_NORTHEAST_IP}:554/Streaming/Channels/102
+          roles:
+            - detect
+    detect:
+      width: 1280
+      height: 720
     motion:
       mask:
         - 0.886,0.931,0.889,0.956,0.795,0.957,0.792,0.928
@@ -51,8 +63,11 @@ cameras:
         - path: 
             rtsp://admin:{FRIGATE_GARAGE_WEST_PASSWORD}@{FRIGATE_GARAGE_WEST_IP}:554/Streaming/Channels/101
           roles:
-            - detect
             - record
+        - path: 
+            rtsp://admin:{FRIGATE_GARAGE_WEST_PASSWORD}@{FRIGATE_GARAGE_WEST_IP}:554/Streaming/Channels/102
+          roles:
+            - detect
     detect:
       width: 4096
       height: 1840
@@ -65,8 +80,14 @@ cameras:
         - path: 
             rtsp://admin:{FRIGATE_GARAGE_EAST_PASSWORD}@{FRIGATE_GARAGE_EAST_IP}:554/Streaming/Channels/101
           roles:
-            - detect
             - record
+        - path: 
+            rtsp://admin:{FRIGATE_GARAGE_EAST_PASSWORD}@{FRIGATE_GARAGE_EAST_IP}:554/Streaming/Channels/102
+          roles:
+            - detect
+    detect:
+      width: 1280
+      height: 720
     motion:
       mask:
         - 0.893,0.931,0.887,0.957,0.798,0.964,0.798,0.936
@@ -82,8 +103,14 @@ cameras:
         - path: 
             rtsp://admin:{FRIGATE_GARAGE_NORTH_PASSWORD}@{FRIGATE_GARAGE_NORTH_IP}:554/Streaming/Channels/101
           roles:
-            - detect
             - record
+        - path: 
+            rtsp://admin:{FRIGATE_GARAGE_NORTH_PASSWORD}@{FRIGATE_GARAGE_NORTH_IP}:554/Streaming/Channels/102
+          roles:
+            - detect
+    detect:
+      width: 1280
+      height: 720
   house_west:
     enabled: true
     ui:
@@ -93,8 +120,14 @@ cameras:
         - path: 
             rtsp://admin:{FRIGATE_HOUSE_WEST_PASSWORD}@{FRIGATE_HOUSE_WEST_IP}:554/Streaming/Channels/101
           roles:
-            - detect
             - record
+        - path: 
+            rtsp://admin:{FRIGATE_HOUSE_WEST_PASSWORD}@{FRIGATE_HOUSE_WEST_IP}:554/Streaming/Channels/102
+          roles:
+            - detect
+    detect:
+      width: 1280
+      height: 720
     motion:
       mask:
         - 0.891,0.963,0.89,0.924,0.789,0.931,0.796,0.964
@@ -120,7 +153,7 @@ objects:
       min_score: 0.75
 
 ffmpeg:
-  hwaccel_args: preset-nvidia-h264
+  hwaccel_args: preset-nvidia
 
 review:
   alerts:
