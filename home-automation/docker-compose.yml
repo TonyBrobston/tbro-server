@@ -63,13 +63,13 @@ services:
     network_mode: host
     privileged: true
 
-  mdns-repeater:
-    image: angelnu/mdns_repeater
-    restart: unless-stopped
-    network_mode: host
-    environment:
-    - hostNIC=eno1
-    - dockerNIC=br-e6cbe9582c38
+#  mdns-repeater:
+#    image: angelnu/mdns_repeater
+#    restart: unless-stopped
+#    network_mode: host
+#    environment:
+#    - hostNIC=eno1
+#    - dockerNIC=br-e6cbe9582c38
 
   plex:
     image: lscr.io/linuxserver/plex:latest
