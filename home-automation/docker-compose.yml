@@ -113,8 +113,9 @@ services:
     - 8555:8555/udp
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    - ./frigate/config.yml:/config/config.yml
     - ~/frigate:/config
+    - ~/frigate/recordings_cache:/media/frigate/recordings
+    - ./frigate/config.yml:/config/config.yml
     - /Blue-Iris:/media/frigate
     devices:
     - /dev/bus/usb:/dev/bus/usb

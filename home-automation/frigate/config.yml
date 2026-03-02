@@ -47,8 +47,6 @@ cameras:
     ui:
       order: 1
       dashboard: true
-    live:
-      stream_name: house_east
     ffmpeg:
       inputs:
         - path: rtsp://localhost:8554/house_east
@@ -73,8 +71,6 @@ cameras:
     ui:
       order: 0
       dashboard: true
-    live:
-      stream_name: house_northeast
     ffmpeg:
       inputs:
         - path: rtsp://localhost:8554/house_northeast
@@ -100,8 +96,6 @@ cameras:
     ui:
       order: 2
       dashboard: true
-    live:
-      stream_name: garage_north
     ffmpeg:
       inputs:
         - path: rtsp://localhost:8554/garage_north
@@ -119,8 +113,6 @@ cameras:
     ui:
       order: 3
       dashboard: true
-    live:
-      stream_name: garage_east
     ffmpeg:
       inputs:
         - path: rtsp://localhost:8554/garage_east
@@ -145,8 +137,6 @@ cameras:
     ui:
       order: 4
       dashboard: true
-    live:
-      stream_name: garage_west
     ffmpeg:
       inputs:
         - path: rtsp://localhost:8554/garage_west
@@ -164,8 +154,6 @@ cameras:
     ui:
       order: 5
       dashboard: true
-    live:
-      stream_name: house_west
     ffmpeg:
       inputs:
         - path: rtsp://localhost:8554/house_west
