@@ -114,7 +114,6 @@ services:
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - ~/frigate:/config
-    - ~/frigate/recordings_cache:/media/frigate/recordings
     - ./frigate/config.yml:/config/config.yml
     - /Blue-Iris:/media/frigate
     devices:
