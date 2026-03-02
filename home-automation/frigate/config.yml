@@ -5,29 +5,39 @@ mqtt:
   password: '{FRIGATE_MQTT_PASSWORD}'
 
 go2rtc:
+  ffmpeg:
+    bin: ffmpeg
+    global_args: -hide_banner -loglevel warning
+    hwaccel_args: -hwaccel cuda -hwaccel_output_format cuda
   streams:
     house_east:
       - rtsp://admin:{FRIGATE_HOUSE_EAST_PASSWORD}@{FRIGATE_HOUSE_EAST_IP}:554/Streaming/Channels/101
+      - ffmpeg:house_east#video=h264#hardware
     house_east_sub:
       - rtsp://admin:{FRIGATE_HOUSE_EAST_PASSWORD}@{FRIGATE_HOUSE_EAST_IP}:554/Streaming/Channels/102
     house_northeast:
       - rtsp://admin:{FRIGATE_HOUSE_NORTHEAST_PASSWORD}@{FRIGATE_HOUSE_NORTHEAST_IP}:554/Streaming/Channels/101
+      - ffmpeg:house_northeast#video=h264#hardware
     house_northeast_sub:
       - rtsp://admin:{FRIGATE_HOUSE_NORTHEAST_PASSWORD}@{FRIGATE_HOUSE_NORTHEAST_IP}:554/Streaming/Channels/102
     garage_north:
       - rtsp://admin:{FRIGATE_GARAGE_WEST_PASSWORD}@{FRIGATE_GARAGE_WEST_IP}:554/Streaming/Channels/101
+      - ffmpeg:garage_north#video=h264#hardware
     garage_north_sub:
       - rtsp://admin:{FRIGATE_GARAGE_WEST_PASSWORD}@{FRIGATE_GARAGE_WEST_IP}:554/Streaming/Channels/102
     garage_east:
       - rtsp://admin:{FRIGATE_GARAGE_EAST_PASSWORD}@{FRIGATE_GARAGE_EAST_IP}:554/Streaming/Channels/101
+      - ffmpeg:garage_east#video=h264#hardware
     garage_east_sub:
       - rtsp://admin:{FRIGATE_GARAGE_EAST_PASSWORD}@{FRIGATE_GARAGE_EAST_IP}:554/Streaming/Channels/102
     garage_west:
       - rtsp://admin:{FRIGATE_GARAGE_NORTH_PASSWORD}@{FRIGATE_GARAGE_NORTH_IP}:554/Streaming/Channels/101
+      - ffmpeg:garage_west#video=h264#hardware
     garage_west_sub:
       - rtsp://admin:{FRIGATE_GARAGE_NORTH_PASSWORD}@{FRIGATE_GARAGE_NORTH_IP}:554/Streaming/Channels/102
     house_west:
       - rtsp://admin:{FRIGATE_HOUSE_WEST_PASSWORD}@{FRIGATE_HOUSE_WEST_IP}:554/Streaming/Channels/101
+      - ffmpeg:house_west#video=h264#hardware
     house_west_sub:
       - rtsp://admin:{FRIGATE_HOUSE_WEST_PASSWORD}@{FRIGATE_HOUSE_WEST_IP}:554/Streaming/Channels/102
 
@@ -52,7 +62,7 @@ cameras:
         - 0,0,0.641,0,0.842,0.106,1,0.235,1,0.367,0.778,0.26,0.576,0.233,0.307,0.315,0,0.453
         - 0.886,0.933,0.889,0.958,0.793,0.954,0.795,0.928
     objects:
-      mask:
+      mask: 
         0,0,0.641,0,0.842,0.106,1,0.235,1,0.363,0.777,0.265,0.579,0.231,0.305,0.312,0,0.455
 
   house_northeast:
@@ -160,10 +170,10 @@ cameras:
 
 record:
   enabled: true
-  retain:
+  continuous:
     days: 32
-    mode: all
-
+  motion:
+    days: 32
 objects:
   track:
     - person
@@ -191,6 +201,6 @@ detectors:
     type: edgetpu
     device: pci
 
-version: 0.16-0
+version: 0.17-0
 detect:
   enabled: true
