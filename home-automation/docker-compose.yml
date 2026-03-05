@@ -42,7 +42,7 @@ services:
     env_file:
     - mongo.env
     volumes:
-    - ~/mongo/config:/config
+    - ~/mongo/data:/data/db
     - ~/mongo/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
         
   home-assistant:
@@ -50,9 +50,7 @@ services:
     restart: unless-stopped
     volumes:
     - ~/home-assistant:/config
-    ports:
-    - 8123:8123
-    - 5683:5683/udp
+    network_mode: host
 
   esphome:
     image: esphome/esphome
@@ -62,14 +60,6 @@ services:
     - /etc/localtime:/etc/localtime:ro
     network_mode: host
     privileged: true
-
-#  mdns-repeater:
-#    image: angelnu/mdns_repeater
-#    restart: unless-stopped
-#    network_mode: host
-#    environment:
-#    - hostNIC=eno1
-#    - dockerNIC=br-e6cbe9582c38
 
   plex:
     image: lscr.io/linuxserver/plex:latest
@@ -113,8 +103,8 @@ services:
     - 8555:8555/udp
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    - ~/frigate:/config
     - ./frigate/config.yml:/config/config.yml
+    - ~/frigate:/config
     - /Blue-Iris:/media/frigate
     devices:
     - /dev/bus/usb:/dev/bus/usb
