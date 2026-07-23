@@ -30,6 +30,10 @@ services:
     - 7442:7442/tcp
     volumes:
     - ~/unifi-network-application:/config
+    networks:
+    - unifi-net
+    depends_on:
+    - unifi-db
 
   unifi-db:
     image: docker.io/mongo:7.0
@@ -44,6 +48,8 @@ services:
     volumes:
     - ~/mongo/data:/data/db
     - ~/mongo/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
+    networks:
+    - unifi-net
         
   home-assistant:
     image: homeassistant/home-assistant
@@ -141,3 +147,7 @@ services:
     env_file:
       - .env
     command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TOKEN}
+
+networks:
+  unifi-net:
+    driver: bridge
